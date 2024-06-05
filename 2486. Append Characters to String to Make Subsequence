@@ -11,6 +11,6 @@ class Solution {
                 j++;
             }
         }
-        return t.length()-matching;
+        return t.length() - matching;
     }
 }
