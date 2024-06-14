@@ -18,7 +18,8 @@ class Solution {
     }
 }
 
-Approach 2 : Frequency Array
+Approach 2 : counting sort
+
 Time complexity : O(n + maxValue)
 Space complexity : O(n+maxValue)
 
