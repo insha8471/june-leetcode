@@ -1,4 +1,4 @@
-Approach : Brute Force
+Approach : Brute Force (TLE)
 
 Time complexity : O(D*n)  // D = max - min
 Space complexity : O(1)
@@ -49,5 +49,54 @@ class Solution {
         }
         bouquets += (cnt/k);
         return bouquets >= m;
+    }
+}
+
+_____________________________________________________________________________________________________________________________________________________________________
+
+Approach = Binary Search 
+Time complexity : O(n)
+Space complexity : O(1)
+
+class Solution {
+    public boolean isPossible(int[] a,int x, int m, int k){
+        int cnt = 0;
+        int bouquets = 0;
+
+        for(int day : a){
+            if(day <= x){
+                cnt++;
+            }else{
+                bouquets += (cnt/k);
+                cnt = 0;
+            }
+        }
+        bouquets += (cnt/k);
+        return bouquets >= m;
+    }
+    public int minDays(int[] a, int m, int k) {
+        if(m*k > a.length) return -1;
+
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+
+        for(int x : a){
+            if(x < min) min = x;
+            if(x > max) max = x;
+        }
+
+        int res = -1;
+
+        while(min <= max){
+            int mid = (min+max)/2;
+
+            if(isPossible(a,mid,m,k)){
+                res = mid;
+                max = mid-1;
+            }else{
+                min = mid+1;
+            }
+        }
+        return res;
     }
 }
