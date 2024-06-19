@@ -1,0 +1,53 @@
+Approach : Brute Force
+
+Time complexity : O(D*n)  // D = max - min
+Space complexity : O(1)
+
+class Solution {
+    public int getMin(int[] a){
+        int min = Integer.MAX_VALUE;
+        for(int x : a){
+            if(x < min){
+                min = x;
+            }
+        }
+        return min;
+    }
+
+    public int getMax(int[] a){
+        int max = Integer.MIN_VALUE;
+        for(int x : a){
+            if(x > max){
+                max = x;
+            }
+        }
+        return max;
+    }
+    public int minDays(int[] a, int m, int k) {
+        int min = getMin(a);
+        int max = getMax(a);
+
+        for(int i=min;i<=max;i++){
+            if(isPossible(a,i,m,k)){
+                return i;
+            }
+        }
+    return -1;
+    }
+
+    public boolean isPossible(int[] a, int x, int m, int k){
+        int cnt = 0;
+        int bouquets = 0;
+
+        for(int day : a){
+            if(day <= x){
+                cnt++;
+            }else{
+                bouquets += (cnt/k);
+                cnt = 0;
+            }
+        }
+        bouquets += (cnt/k);
+        return bouquets >= m;
+    }
+}
