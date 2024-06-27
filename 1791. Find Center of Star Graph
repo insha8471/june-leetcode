@@ -1,0 +1,20 @@
+Time complexity : O(n)
+Space complexity : O(n)
+
+class Solution {
+    public int findCenter(int[][] edges) {
+        Map<Integer, Integer> edge = new HashMap<>();
+
+        for(int[] node : edges){
+            edge.put(node[0],edge.getOrDefault(node[0],0)+1);
+            edge.put(node[1], edge.getOrDefault(node[1],0)+1);
+        }
+
+        for(Map.Entry<Integer, Integer> entry : edge.entrySet()){
+            if(entry.getValue() == edges.length){
+                return entry.getKey();
+            }
+        }
+        return -1;
+    }
+}
